@@ -78,86 +78,69 @@
       </div>
     </header>
 
-    <!-- Catálogo de ejemplo -->
-    <main class="container py-5" id="productos">
-      <div class="text-center mb-5">
+    
+<!-- Catálogo dinámico de productos -->
+<main class="container py-5" id="productos">
+
+    <div class="text-center mb-5">
         <h2 class="fw-bold">Nuestros productos</h2>
         <p class="text-secondary">
-          Explora algunos de nuestros equipos tecnológicos.
+            Explora nuestros equipos tecnológicos.
         </p>
-      </div>
+    </div>
 
-      <div class="row g-4">
-        <!-- Producto 1 -->
-        <div class="col-md-6 col-lg-4">
-          <article class="card h-100 border-0 shadow-sm">
-            <div class="card-body text-center p-4">
-              <div class="display-1 mb-3">💻</div>
+    <div class="row g-4">
 
-              <span class="badge text-bg-primary mb-3"> Computadoras </span>
+        <!-- Se genera una tarjeta por cada producto de MySQL -->
+        <div class="col-md-6 col-lg-4"
+             th:each="producto : ${productos}">
 
-              <h3 class="h5 fw-bold">Laptop Lenovo</h3>
+            <article class="card h-100 border-0 shadow-sm">
+                <div class="card-body text-center p-4">
 
-              <p class="text-secondary">
-                Equipo para estudiar, trabajar y programar.
-              </p>
+                    <div class="display-1 mb-3">💻</div>
 
-              <p class="fs-4 fw-bold text-primary mt-auto">S/ 2,499.00</p>
+                    <span class="badge text-bg-primary mb-3"
+                          th:text="${producto.categoria}">
+                        Categoría
+                    </span>
 
-              <a href="#contacto" class="btn btn-outline-primary">
-                Consultar producto
-              </a>
-            </div>
-          </article>
+                    <h3 class="h5 fw-bold"
+                        th:text="${producto.nombre}">
+                        Nombre del producto
+                    </h3>
+
+                    <p class="text-secondary"
+                       th:text="${producto.descripcion}">
+                        Descripción del producto
+                    </p>
+
+                    <p class="fs-4 fw-bold text-primary mt-3"
+                       th:text="${'S/ ' + producto.precio}">
+                        S/ 0.00
+                    </p>
+
+                    <a href="#contacto"
+                       class="btn btn-outline-primary">
+                        Consultar producto
+                    </a>
+
+                </div>
+            </article>
+
         </div>
 
-        <!-- Producto 2 -->
-        <div class="col-md-6 col-lg-4">
-          <article class="card h-100 border-0 shadow-sm">
-            <div class="card-body text-center p-4">
-              <div class="display-1 mb-3">🖱️</div>
-
-              <span class="badge text-bg-success mb-3"> Accesorios </span>
-
-              <h3 class="h5 fw-bold">Mouse inalámbrico</h3>
-
-              <p class="text-secondary">
-                Comodidad para tus actividades diarias.
-              </p>
-
-              <p class="fs-4 fw-bold text-primary mt-auto">S/ 59.90</p>
-
-              <a href="#contacto" class="btn btn-outline-primary">
-                Consultar producto
-              </a>
-            </div>
-          </article>
+        <!-- Mensaje si todavía no hay productos -->
+        <div class="col-12 text-center"
+             th:if="${#lists.isEmpty(productos)}">
+            <p class="text-secondary">
+                Todavía no hay productos disponibles.
+            </p>
         </div>
 
-        <!-- Producto 3 -->
-        <div class="col-md-6 col-lg-4">
-          <article class="card h-100 border-0 shadow-sm">
-            <div class="card-body text-center p-4">
-              <div class="display-1 mb-3">🎧</div>
+    </div>
+</main>
 
-              <span class="badge text-bg-warning mb-3"> Audio </span>
-
-              <h3 class="h5 fw-bold">Audífonos Bluetooth</h3>
-
-              <p class="text-secondary">
-                Disfruta tu música y tus clases en línea.
-              </p>
-
-              <p class="fs-4 fw-bold text-primary mt-auto">S/ 129.90</p>
-
-              <a href="#contacto" class="btn btn-outline-primary">
-                Consultar producto
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </main>
 
     <!-- Contacto y pie de página -->
     <footer class="bg-dark text-white text-center py-4" id="contacto">

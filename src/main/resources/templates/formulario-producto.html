@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Registrar producto | TechZone</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="bg-light">
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand fw-bold" th:href="@{/}"> TechZone </a>
+
+        <a class="btn btn-outline-light" th:href="@{/}"> Volver al catálogo </a>
+      </div>
+    </nav>
+
+    <!-- Formulario -->
+    <main class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <h1 class="h3 fw-bold mb-2">Registrar producto</h1>
+
+              <p class="text-secondary mb-4">
+                Completa los datos del nuevo producto.
+              </p>
+
+              <form
+                th:action="@{/productos/guardar}"
+                th:object="${producto}"
+                method="post"
+              >
+                <div class="mb-3">
+                  <label for="nombre" class="form-label">
+                    Nombre del producto
+                  </label>
+
+                  <input
+                    type="text"
+                    id="nombre"
+                    class="form-control"
+                    th:field="*{nombre}"
+                    maxlength="100"
+                    required
+                    placeholder="Ej. Laptop HP"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="categoria" class="form-label"> Categoría </label>
+
+                  <input
+                    type="text"
+                    id="categoria"
+                    class="form-control"
+                    th:field="*{categoria}"
+                    maxlength="50"
+                    required
+                    placeholder="Ej. Computadoras"
+                  />
+                </div>
+
+                <div class="mb-3">
+                  <label for="precio" class="form-label"> Precio (S/) </label>
+
+                  <input
+                    type="number"
+                    id="precio"
+                    class="form-control"
+                    th:field="*{precio}"
+                    min="0.01"
+                    step="0.01"
+                    required
+                    placeholder="Ej. 1999.90"
+                  />
+                </div>
+
+                <div class="mb-4">
+                  <label for="descripcion" class="form-label">
+                    Descripción
+                  </label>
+
+                  <textarea
+                    id="descripcion"
+                    class="form-control"
+                    th:field="*{descripcion}"
+                    maxlength="500"
+                    rows="3"
+                    placeholder="Describe el producto"
+                  ></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                  Guardar producto
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
