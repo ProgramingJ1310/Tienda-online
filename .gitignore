@@ -1,0 +1,6 @@
+.gradle/
+build/
+out/
+*.class
+.env
+src/main/resources/application.properties
